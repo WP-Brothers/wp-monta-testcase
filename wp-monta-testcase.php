@@ -1,5 +1,7 @@
 <?php
 
+use GuzzleHttp\Client;
+
 declare(strict_types=1);
 
 /**
@@ -30,4 +32,6 @@ defined('ABSPATH') || exit;
 require_once __DIR__ . '/inc/bootstrap.php';
 
 add_action('plugins_loaded', static function (): void {
+    // Do some clienty stuff.
+    $client = new Client();
 });

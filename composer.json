@@ -6,6 +6,11 @@
         {
             "name": "Social Brothers",
             "email": "wordpress@socialbrothers.nl"
+        },
+        {
+            "name": "Jascha van Aalst",
+            "email": "jascha@socialbrothers.nl",
+            "role": "Developer"
         }
     ],
     "repositories": [
@@ -42,7 +47,8 @@
         }
     },
     "require": {
-        "php": "~8.0||~8.1||~8.2"
+        "php": "~8.0||~8.1||~8.2",
+        "guzzlehttp/guzzle": "^7.8"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -52,7 +58,7 @@
     "extra": {
         "bamarni-bin": {
             "bin-links": true,
-            "forward-command": false
+            "forward-command": true
         },
         "installer-paths": {
             "vendor/roots/wordpress-no-content/wp-content/plugins/{$name}/": [
