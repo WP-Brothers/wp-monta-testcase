@@ -1,0 +1,98 @@
+{
+    "name": "socialbrothers/wp-monta-testcase",
+    "description": "Plugin demonstrating dependency collision with prepackaged vendor",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Social Brothers",
+            "email": "wordpress@socialbrothers.nl"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.sbdev.nl/"
+        },
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SocialBrothers\\MontaTestcase\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SocialBrothers\\MontaTestcase\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform-check": false,
+        "sort-packages": true,
+        "platform": {
+            "php": "8.0.22"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "require": {
+        "php": "~7.4||~8.0||~8.1",
+        "composer/installers": "*",
+        "socialbrothers/di": "^1.0",
+        "socialbrothers/service-provider": "^1.1",
+        "socialbrothers/wp-settings": "*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "bamarni/composer-bin-plugin": "^1.8",
+        "roots/wordpress-no-content": "*"
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false
+        },
+        "installer-paths": {
+            "vendor/roots/wordpress-no-content/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    },
+    "archive": {
+        "exclude": [
+            ".idea/",
+            ".phive/",
+            ".var/",
+            "tests/",
+            "tools/",
+            "tools/*",
+            "vendor-bin/",
+            ".editorconfig",
+            ".gitattributes",
+            ".gitignore",
+            ".php-cs-fixer.dist.php",
+            ".phpstorm.meta.php",
+            "phpstan.neon.dist",
+            "phpunit.xml.dist"
+        ]
+    },
+    "scripts": {
+        "phpunit": "tools/phpunit.phar",
+        "php-cs-fixer": "tools/php-cs-fixer",
+        "phpstan": "vendor/bin/phpstan",
+        "format": "@php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+        "test": "@phpunit -c phpunit.xml.dist",
+        "analyze": "@phpstan analyze -c phpstan.neon.dist",
+        "analyze:baseline": "@analyze --generate-baseline"
+    }
+}

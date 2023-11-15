@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+if ! command -v phive &> /dev/null
+then
+  echo "Installing phive..."
+
+  wget -O phive.phar https://phar.io/releases/phive.phar
+  wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc
+  gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x9D8A98B29B2D5D79
+  gpg --verify phive.phar.asc phive.phar
+  chmod +x phive.phar
+  sudo mv phive.phar /usr/local/bin/phive
+
+  PHIVE=/usr/local/bin/phive
+else
+  PHIVE=$(which phive)
+fi
+
+echo "Installing dev-dependencies using phive"
+
+${PHIVE} install
+
+# Create .env from .env.example.
+DOTENV=${PWD}/.env.example
+DOTENV_TARGET=${PWD}/.env
+
+if [ -f "$DOTENV" ];
+then
+    if [ ! -f "$DOTENV_TARGET" ];
+    then
+      echo "Copying .env.example to .env"
+      cp "${DOTENV}" "${DOTENV_TARGET}"
+    fi
+fi
+
+# Copy global auth.json file to project.
+AUTH_JSON=${HOME}/.composer/auth.json
+AUTH_JSON_TARGET=${PWD}/auth.json
+
+if [ -f "$AUTH_JSON" ];
+then
+    if [ ! -f "$AUTH_JSON_TARGET" ];
+    then
+        echo "Copying global auth.json to project."
+        cp "${AUTH_JSON}" "${AUTH_JSON_TARGET}"
+    fi
+fi
+
