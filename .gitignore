@@ -22,7 +22,7 @@
 vendor/
 vendor-bin/**/vendor/
 /node_modules/
-#/tools/
+/tools/
 
 ## Env
 /.env

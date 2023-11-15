@@ -11,10 +11,6 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://composer.sbdev.nl/"
-        },
-        {
-            "type": "composer",
             "url": "https://wpackagist.org",
             "only": [
                 "wpackagist-plugin/*",
@@ -46,11 +42,7 @@
         }
     },
     "require": {
-        "php": "~7.4||~8.0||~8.1",
-        "composer/installers": "*",
-        "socialbrothers/di": "^1.0",
-        "socialbrothers/service-provider": "^1.1",
-        "socialbrothers/wp-settings": "*"
+        "php": "~8.0||~8.1||~8.2"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -81,7 +73,6 @@
             ".gitattributes",
             ".gitignore",
             ".php-cs-fixer.dist.php",
-            ".phpstorm.meta.php",
             "phpstan.neon.dist",
             "phpunit.xml.dist"
         ]

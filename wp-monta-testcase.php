@@ -3,25 +3,21 @@
 declare(strict_types=1);
 
 /**
- * Main plugin file for socialbrothers/wp-monta-testcase
+ * Main plugin file for socialbrothers/wp-monta-testcase.
  *
- * Plugin demonstrating dependency collision with prepackaged vendor
- *
- * @package SocialBrothers
- * @version 0.0.1
- *
- * @author  Social Brothers <backend@socialbrothers.nl>
+ * Plugin demonstrating dependency collision with prepackaged vendor.
  *
  * @wordpress-plugin
  * Plugin Name:       Monta Dependency Collision testcase
  * Plugin URI:        https://wpbrothers.nl
  * Description:       Plugin demonstrating dependency collision with prepackaged vendor
- * Version:           0.0.1
+ * Version:           1.0.0
  * Requires PHP:      8.0.22
  * Author:            Social Brothers
  * Author URI:        https://socialbrothers.nl/
  * Update URI:        false
  */
+defined('ABSPATH') || exit;
 
 /**
  * Loads composer autoloader based on circumstances.
@@ -32,3 +28,6 @@ declare(strict_types=1);
  * @throws RuntimeException
  */
 require_once __DIR__ . '/inc/bootstrap.php';
+
+add_action('plugins_loaded', static function (): void {
+});
